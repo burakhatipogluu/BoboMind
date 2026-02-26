@@ -122,6 +122,13 @@ struct MainView: View {
             }
             return .ignored
         }
+        .onKeyPress(characters: .init(charactersIn: "k"), phases: .down) { press in
+            if press.modifiers.contains(.command) {
+                appState.panel?.keepOpen.toggle()
+                return .handled
+            }
+            return .ignored
+        }
     }
 
     // MARK: - Sidebar
@@ -390,6 +397,22 @@ struct MainView: View {
 
     private var statusBar: some View {
         HStack(spacing: 8) {
+            if appState.panel?.keepOpen == true {
+                HStack(spacing: 3) {
+                    Image(systemName: "pin.fill")
+                        .font(.system(size: 9))
+                    Text("Pinned")
+                        .font(.caption2)
+                }
+                .foregroundStyle(.orange)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(Color.orange.opacity(0.15))
+                )
+            }
+
             Text(statusText)
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -400,6 +423,7 @@ struct MainView: View {
                 Text("**\u{21A9}** Paste")
                 Text("**\u{21E7}\u{21A9}** Plain")
                 Text("**\u{2318}P** Pin")
+                Text("**\u{2318}K** Keep")
                 Text("**\u{232B}** Delete")
             }
             .font(.caption2)
