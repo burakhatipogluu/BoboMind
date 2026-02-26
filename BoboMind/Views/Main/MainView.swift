@@ -274,18 +274,12 @@ struct MainView: View {
     // MARK: - Data
 
     private var selectedItem: ClipboardItem? {
-        guard let id = selectedItemID else { return nil }
-        do {
-            guard let item = try? modelContext.model(for: id) as? ClipboardItem,
-                  !item.isDeleted else {
-                return nil
-            }
-            // Access a property to trigger fault; if model is gone this may throw
-            _ = item.title
-            return item
-        } catch {
+        guard let id = selectedItemID,
+              let item = modelContext.model(for: id) as? ClipboardItem,
+              !item.isDeleted else {
             return nil
         }
+        return item
     }
 
     private func recomputeFilteredItems() {
