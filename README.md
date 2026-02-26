@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="BoboMind/Assets.xcassets/AppIcon.appiconset/icon_256x256.png" width="128" alt="BoboMind Icon" />
+<img src="assets/logo.png" width="128" alt="BoboMind Icon" />
 
 # BoboMind
 
