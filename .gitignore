@@ -1,10 +1,13 @@
-# Xcode
-.build/
+# Xcode build outputs
+build/
+build_test/
+dbg/
 DerivedData/
+.build/
+
+# Xcode user-specific
 *.xcuserstate
-*.xcworkspace/xcuserdata/
 xcuserdata/
-*.xcodeproj/
 
 # Swift Package Manager
 .swiftpm/
@@ -21,13 +24,10 @@ CLAUDE.md
 skills.md
 tasks/
 
-# Misc
+# Archives & distribution
 *.ipa
 *.dSYM.zip
 *.dSYM
-
-# Build & release
-build/
 *.dmg
 *.pkg
 *.zip
