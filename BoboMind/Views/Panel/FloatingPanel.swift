@@ -59,9 +59,26 @@ final class FloatingPanel: NSPanel {
         super.resignKey()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
             guard let self, self.isVisible, !self.isKeyWindow else { return }
+            // Don't dismiss if the frontmost app is a screenshot/screen capture tool
+            if let frontApp = NSWorkspace.shared.frontmostApplication?.bundleIdentifier,
+               Self.screenshotBundleIDs.contains(frontApp) {
+                return
+            }
             self.animateOut()
         }
     }
+
+    private static let screenshotBundleIDs: Set<String> = [
+        "com.apple.screencaptureui",       // macOS Screenshot (⌘⇧5)
+        "com.apple.Screenshot",            // macOS Screenshot
+        "com.apple.screencapture",         // Screen Capture
+        "com.apple.preview",               // Preview (screenshot from menu)
+        "com.shottr.shottr",               // Shottr
+        "com.cleanshot.app",               // CleanShot X
+        "cc.snappy.Snappy",               // Snappy
+        "org.skitch.skitch",              // Skitch
+        "com.monosnap.monosnap",          // Monosnap
+    ]
 
     override func cancelOperation(_ sender: Any?) {
         if closeOnEscape {

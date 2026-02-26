@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="BoboMind/Assets.xcassets/AppIcon.appiconset/icon_256x256.png" width="128" alt="BoboMind Icon" />
+
 # BoboMind
 
 ### Smart Clipboard Manager for macOS
@@ -7,116 +9,119 @@
 **Your clipboard, supercharged.** BoboMind lives quietly in your menu bar and gives you instant, Spotlight-style access to everything you've ever copied — text, images, rich text, files, and more.
 
 [![macOS 14+](https://img.shields.io/badge/macOS-Sonoma_14+-0A84FF?style=flat-square&logo=apple&logoColor=white)](https://www.apple.com/macos/sonoma/)
-[![Swift 5.10](https://img.shields.io/badge/Swift-5.10—F05138?style=flat-square&logo=swift&logoColor=white)](https://swift.org)
+[![Swift 5.10](https://img.shields.io/badge/Swift-5.10-F05138?style=flat-square&logo=swift&logoColor=white)](https://swift.org)
 [![SwiftUI](https://img.shields.io/badge/Built_with-SwiftUI-006AFF?style=flat-square&logo=swift&logoColor=white)](https://developer.apple.com/swiftui/)
 [![SwiftData](https://img.shields.io/badge/Powered_by-SwiftData-34C759?style=flat-square&logo=apple&logoColor=white)](https://developer.apple.com/xcode/swiftdata/)
+[![License](https://img.shields.io/badge/License-All_Rights_Reserved-lightgrey?style=flat-square)]()
 
 ---
 
 **One hotkey. Infinite clipboard.**
 
-Press `Cmd + Shift + V` and a beautiful floating panel appears — search your history, pick a clip, and it's pasted instantly.
+Press `⌘ ⇧ V` and a beautiful floating panel appears — search your history, pick a clip, and it's pasted instantly.
+
+<!-- 
+SCREENSHOTS: Add your screenshots here
+<img src="screenshots/main-panel.png" width="700" alt="BoboMind Main Panel" />
+-->
 
 </div>
 
 ---
 
-## Why BoboMind?
+## ✨ Why BoboMind?
 
 macOS gives you one clipboard slot. BoboMind gives you **unlimited history** with zero friction.
 
-- **Zero window switching** - the floating panel appears over any app and pastes directly
-- **No Electron, no overhead** — 100% native Swift + SwiftUI, feels as fast as Spotlight
-- **Privacy first** — your data stays on your Mac, never touches a server
-- **Password safe** — automatically ignores copies from 1Password, Bitwarden, LastPass, and more
+| | |
+|---|---|
+| 🚀 **Zero friction** | Floating panel appears over any app, pastes directly — no window switching |
+| ⚡ **Native speed** | 100% Swift + SwiftUI, feels as fast as Spotlight — no Electron, no overhead |
+| 🔒 **Privacy first** | Your data stays on your Mac, never touches a server, no analytics |
+| 🔑 **Password safe** | Automatically ignores copies from 1Password, Bitwarden, LastPass & more |
 
 ---
 
-## Features
+## 🎯 Features
 
 ### Instant Access
 - **Spotlight-style floating panel** with frosted glass vibrancy effect
-- **Global hotkey** (`Cmd + Shift + V`) — works from any app, any fullscreen space
+- **Global hotkey** (`⌘⇧V`) — works from any app, any fullscreen space
 - **6 popup positions** — center, mouse cursor, top, bottom, left, right
 - **Smooth animations** — fade-in/out transitions, polished macOS-native feel
 
 ### Clipboard Intelligence
-- **Captures everything** — plain text, rich text, HTML, images, file URLs, colors
+- **Captures everything** — plain text, rich text, HTML, images, file URLs
 - **Smart deduplication** — SHA256 content hashing prevents duplicate entries
 - **Source tracking** — see which app each clip was copied from
-- **Auto-cleanup** — configurable history limit (100 / 500 / 1,000 / 5,000 / unlimited)
+- **Auto-cleanup** — configurable history limit (100 / 500 / 1K / 5K / unlimited)
 
 ### Powerful Search
-- **3-tier cascade search** — exact match, prefix match, then fuzzy subsequence matching
-- **Content type filters** — quick chips to filter by text, image, file, HTML, etc.
-- **Fuzzy matcher** — finds what you need even with typos or partial queries
+- **3-tier search** — exact match → prefix match → fuzzy subsequence
+- **Regex support** — wrap your pattern in `/slashes/` for regex search
+- **Content type filters** — quick chips to filter by text, image, file, HTML
+- **Fuzzy matcher** — finds what you need even with typos
 
 ### Organization
-- **Pin clips** — keep frequently used items always at the top
-- **Custom groups** — organize clips into named collections
-- **Snippets** — save and manage reusable text templates
-- **Preview panel** — side-by-side content preview (text, images, rendered HTML)
+- 📌 **Pin clips** — keep important items always at the top
+- 📁 **Groups** — organize clips into named collections with custom icons
+- 📝 **Snippets** — save and manage reusable text templates
+- 👁️ **Preview panel** — side-by-side content preview (text, images, rendered HTML)
 
 ### Privacy & Security
-- **Concealed content detection** — skips items from password managers automatically
-- **Browser extension awareness** — detects and ignores copies from Bitwarden, 1Password, LastPass, Dashlane, NordPass Chrome extensions
-- **App exclusion list** — manually exclude any app by bundle ID
-- **Local-only storage** — SwiftData persistence, no cloud, no telemetry
+- 🛡️ Concealed content detection — skips password manager items automatically
+- 🌐 Browser extension awareness — detects copies from Bitwarden, 1Password, LastPass, Dashlane, NordPass Chrome extensions
+- 🚫 App exclusion list — block any app by bundle ID
+- 💾 Local-only storage — SwiftData persistence, no cloud, no telemetry
 
 ### Customization
-- **Popup position** — choose where the panel appears on screen
-- **Preview panel toggle** — show or hide the content preview sidebar
-- **Sound effects** — optional paste sound feedback
-- **Launch at login** — auto-start via SMAppService
-- **Export / Import** — back up and restore your clips and snippets as JSON
+- 📐 Adjustable popup position and panel size (compact / standard / large)
+- 👁️ Toggle preview panel on or off
+- 🔊 Optional paste sound feedback
+- 🚀 Launch at login via SMAppService
+- 📦 Export / Import — back up your clips and snippets as JSON
 
 ---
 
-## Keyboard Shortcuts
+## ⌨️ Keyboard Shortcuts
 
-BoboMind is designed to be used without touching the mouse.
+BoboMind is designed keyboard-first — you never need to touch the mouse.
 
 | Shortcut | Action |
-|:---------|:----—--|
-| `Cmd + Shift + V` | Toggle floating panel |
-| `Enter` | Paste selected clip |
-| `Shift + Enter` | Paste as plain text |
-| `Up` / `Down` | Navigate clips |
-| `Cmd + P` | Pin / Unpin clip |
-| `Delete` | Delete selected clip |
-| `Escape` | Close panel |
+|:---------|:-------|
+| `⌘⇧V` | Toggle floating panel |
+| `↩` | Paste selected clip |
+| `⇧↩` | Paste as plain text |
+| `↑` / `↓` | Navigate clips |
+| `⌘P` | Pin / Unpin clip |
+| `⌫` | Delete selected clip |
+| `⎋` | Close panel |
 
-The global hotkey is fully customizable from Settings > Shortcuts.
+> 💡 The global hotkey is fully customizable from **Settings → Shortcuts**.
 
 ---
 
-## How It Works
+## 🔧 How It Works
 
 ```
 Copy something anywhere
-        |
-        v
-ClipboardMonitor detects change (polling every 0.5s)
-        |
-        v
-Content is hashed (SHA256) and checked for duplicates
-        |
-        v
-Stored in SwiftData with type, source app, and timestamp
-        |
-        v
-Press Cmd+Shift+V --> Floating panel appears
-        |
-        v
-Search, browse, or filter --> Select a clip
-        |
-        v
-Clip is written to system clipboard --> Auto-pasted to target app
+        ↓
+ClipboardMonitor detects change (smart polling)
+        ↓
+Content hashed (SHA256) + checked for duplicates
+        ↓
+Stored in SwiftData with type, source app & timestamp
+        ↓
+Press ⌘⇧V → Floating panel appears
+        ↓
+Search, browse, or filter → Select a clip
+        ↓
+Written to system clipboard → Auto-pasted to target app
 ```
 
 ---
 
-## Tech Stack
+## 🏗️ Tech Stack
 
 | Component | Technology |
 |:----------|:-----------|
@@ -124,43 +129,44 @@ Clip is written to system clipboard --> Auto-pasted to target app
 | UI Framework | SwiftUI |
 | Persistence | SwiftData |
 | Window System | NSPanel (non-activating, floating) |
-| Global Hotkey | [KeyboardShortcuts](https://github.com/sindresorhus/KeyboardShortcuts) by Sindre Sorhus |
+| Global Hotkey | Carbon Events API |
 | Hashing | CryptoKit (SHA256) |
 | Platform | macOS Sonoma 14+ |
 
 ---
 
-## Architecture
+## 📁 Architecture
 
 ```
 BoboMind/
-├── App/                  # App entry point, AppDelegate, AppState
+├── App/                  # Entry point, AppDelegate, AppState
 ├── Models/               # SwiftData models
 │   ├── ClipboardItem     #   Clipboard entry with content & metadata
 │   ├── ClipGroup         #   User-created clip collections
 │   ├── Snippet           #   Reusable text templates
-│   ├── ContentType       #   Text, rich text, HTML, image, file, color
+│   ├── ContentType       #   Text, rich text, HTML, image, file
+│   ├── PanelSize         #   Compact, standard, large
 │   └── PopupPosition     #   6 panel placement options
 ├── Services/
 │   ├── ClipboardMonitor  #   NSPasteboard polling & capture
-│   ├── PasteService      #   Clipboard write & simulated paste
-│   ├── StorageService    #   SwiftData CRUD operations
-│   ├── HotkeyManager     #   Global shortcut registration
+│   ├── PasteService      #   Clipboard write with paste detection
+│   ├── StorageService    #   SwiftData CRUD (ModelActor)
+│   ├── HotkeyManager     #   Carbon global shortcut registration
 │   ├── ExportImport      #   JSON backup & restore
-│   └── ThumbnailCache    #   Image preview caching
+│   └── ThumbnailCache    #   Async image preview caching
 ├── Views/
-│   ├── Panel/            #   NSPanel subclass (Spotlight-like window)
+│   ├── Panel/            #   FloatingPanel (NSPanel subclass)
 │   ├── Main/             #   Search bar, clip list, row view, preview
-│   ├── Groups/           #   Group editor and sidebar
+│   ├── Groups/           #   Group editor
 │   ├── Settings/         #   General, shortcuts, appearance, about
 │   ├── Snippets/         #   Snippet list and editor
-│   └── Components/       #   Reusable UI pieces (icons, empty state, time ago)
+│   └── Components/       #   Reusable UI (icons, empty state, toast)
 └── Utilities/            #   Constants, FuzzyMatcher, extensions
 ```
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Requirements
 
@@ -170,24 +176,22 @@ BoboMind/
 ### Build & Run
 
 ```bash
-# Clone the repository
 git clone https://github.com/burakhatipogluu/BoboMind.git
 cd BoboMind
-
-# Open in Xcode
-open Package.swift
+open BoboMind.xcodeproj
 ```
 
-Build and run from Xcode (`Cmd + R`). BoboMind will appear as a menu bar icon.
+Build and run (`⌘R`). BoboMind will appear as a 🐾 icon in your menu bar.
 
 ### Configuration
 
-Click the menu bar icon to access Settings:
+Click the menu bar icon → **Settings** to customize:
 
 | Setting | Options | Default |
 |:--------|:--------|:--------|
-| History limit | 100 / 500 / 1,000 / 5,000 / Unlimited | 500 |
-| Popup position | Center, Mouse Cursor, Top, Bottom, Left, Right | Center |
+| History limit | 100 / 500 / 1K / 5K / Unlimited | 500 |
+| Popup position | Center, Mouse, Top, Bottom, Left, Right | Center |
+| Panel size | Compact / Standard / Large | Standard |
 | Preview panel | Show / Hide | Show |
 | Paste sound | On / Off | On |
 | Launch at login | On / Off | Off |
@@ -195,10 +199,29 @@ Click the menu bar icon to access Settings:
 
 ---
 
-## Contributing
+## 🔐 Privacy
 
-Contributions are welcome! Feel free to open an issue or submit a pull request.
+BoboMind is built with privacy as a core principle:
 
-## License
+- **100% offline** — no network calls, no analytics, no telemetry
+- **Local storage only** — all data stays in your Mac's Application Support directory
+- **Password manager safe** — automatically detects and ignores sensitive copies
+- **You own your data** — export anytime, delete everything with one click
 
-All rights reserved.
+Read our full [Privacy Policy](PRIVACY.md).
+
+---
+
+## 📄 License
+
+All rights reserved. © 2026 Burak Hatipoğlu
+
+---
+
+<div align="center">
+
+**Made with ❤️ in Istanbul**
+
+[Report Bug](https://github.com/burakhatipogluu/BoboMind/issues) · [Request Feature](https://github.com/burakhatipogluu/BoboMind/issues)
+
+</div>
