@@ -29,8 +29,7 @@ final class AppState {
         pasteService.clipboardMonitor = clipboardMonitor
         clipboardMonitor.pasteService = pasteService
 
-        // Seed sample snippets on first launch
-        seedSampleSnippetsIfNeeded(modelContainer: modelContainer)
+
 
         clipboardMonitor.onNewClip = { [weak self] hash, title, plainText, contentType, contents, bundleID, appName in
             guard let self, let storage = self.storageService else { return }
@@ -153,27 +152,4 @@ final class AppState {
         panel = newPanel
     }
 
-    // MARK: - Seed Data
-
-    private func seedSampleSnippetsIfNeeded(modelContainer: ModelContainer) {
-        let key = "hasSeededSampleSnippets"
-        guard !UserDefaults.standard.bool(forKey: key) else { return }
-        UserDefaults.standard.set(true, forKey: key)
-
-        let context = ModelContext(modelContainer)
-        let samples: [(String, String, String)] = [
-            ("Email Signature", "Best regards,\nBurak Hatipoğlu\nSenior DBA", "sig"),
-            ("Meeting Note Template", "## Meeting: [Title]\n**Date:** \n**Attendees:** \n\n### Agenda\n- \n\n### Action Items\n- [ ] \n", "meeting"),
-            ("Code Review Comment", "Great work overall! A few suggestions:\n\n1. Consider extracting this logic into a separate method\n2. Add error handling for edge cases\n3. Unit tests would be helpful here", "review"),
-            ("Quick Reply — Acknowledged", "Thanks for the update! I'll review this and get back to you shortly.", "ack"),
-            ("Terminal — Git Status", "git status && git log --oneline -10", "gs"),
-            ("SQL — Active Sessions", "SELECT sid, serial#, username, status, machine\nFROM v$session\nWHERE status = 'ACTIVE'\nORDER BY last_call_et DESC;", "orasql"),
-        ]
-
-        for (title, content, keyword) in samples {
-            let snippet = Snippet(title: title, content: content, keyword: keyword)
-            context.insert(snippet)
-        }
-        try? context.save()
-    }
 }
