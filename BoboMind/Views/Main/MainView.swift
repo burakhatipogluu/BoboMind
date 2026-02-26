@@ -174,6 +174,8 @@ struct MainView: View {
             .foregroundStyle(isSelected ? Color.accentColor : .secondary)
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(label)
+        .accessibilityHint("Show \(label) items")
     }
 
     // MARK: - Clip List
@@ -405,6 +407,8 @@ struct MainView: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 6)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Status: \(statusText)")
     }
 
     private var statusText: String {

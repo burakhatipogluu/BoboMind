@@ -74,6 +74,7 @@ struct PreviewPanelView: View {
                         .foregroundColor(isEditing ? Color.green : Color.secondary)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel(isEditing ? "Save edit" : "Edit clip")
             }
 
             TimeAgoText(date: item.createdAt)
@@ -112,6 +113,7 @@ struct PreviewPanelView: View {
                         .shadow(color: .black.opacity(0.08), radius: 4, y: 2)
                 }
                 .padding(12)
+                .accessibilityLabel("Image preview")
             }
         }
     }
@@ -124,6 +126,7 @@ struct PreviewPanelView: View {
                 .textSelection(.enabled)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(12)
+                .accessibilityLabel("Preview of selected clip")
         }
     }
 
@@ -212,5 +215,6 @@ struct PreviewPanelView: View {
                 .font(.subheadline)
                 .foregroundStyle(.tertiary)
         }
+        .accessibilityLabel("No clip selected. Select a clip to preview.")
     }
 }

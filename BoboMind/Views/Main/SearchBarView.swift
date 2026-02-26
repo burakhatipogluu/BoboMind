@@ -21,6 +21,7 @@ struct SearchBarView: View {
                     .textFieldStyle(.plain)
                     .font(.system(size: 15))
                     .focused($isFocused)
+                    .accessibilityLabel("Search clipboard history")
 
                 if !text.isEmpty || filterType != nil {
                     Button {
@@ -34,6 +35,7 @@ struct SearchBarView: View {
                             .font(.system(size: 14))
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Clear search")
                     .transition(.scale.combined(with: .opacity))
                 }
             }
@@ -100,5 +102,6 @@ struct FilterChip: View {
             .foregroundColor(isSelected ? Color.accentColor : Color.secondary)
         }
         .buttonStyle(.plain)
+        .accessibilityLabel("Filter by \(label)")
     }
 }

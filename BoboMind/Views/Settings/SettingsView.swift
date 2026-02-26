@@ -368,22 +368,63 @@ struct AboutView: View {
             }
 
             VStack(spacing: 8) {
-                Button {
-                    NSWorkspace.shared.open(URL(string: "https://github.com/burakhatipogluu/BoboMind")!)
-                } label: {
-                    HStack(spacing: 4) {
-                        Image(systemName: "link")
-                        Text("GitHub")
+                HStack(spacing: 16) {
+                    Button {
+                        NSWorkspace.shared.open(URL(string: "https://github.com/burakhatipogluu/BoboMind")!)
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: "link")
+                            Text("GitHub")
+                        }
+                        .font(.callout)
                     }
-                    .font(.callout)
+                    .buttonStyle(.plain)
+                    .foregroundStyle(Color.accentColor)
+
+                    Button {
+                        NSWorkspace.shared.open(URL(string: "https://github.com/burakhatipogluu/BoboMind/blob/main/PRIVACY.md")!)
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: "hand.raised")
+                            Text("Privacy Policy")
+                        }
+                        .font(.callout)
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(Color.accentColor)
+
+                    Button {
+                        NSWorkspace.shared.open(URL(string: "https://github.com/burakhatipogluu/BoboMind/issues")!)
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: "questionmark.circle")
+                            Text("Support")
+                        }
+                        .font(.callout)
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(Color.accentColor)
                 }
-                .buttonStyle(.plain)
-                .foregroundStyle(Color.accentColor)
 
                 Text("Made with ❤️ by Burak Hatipoğlu")
                     .font(.caption)
                     .foregroundStyle(.tertiary)
             }
+
+            // Privacy & Data
+            VStack(spacing: 6) {
+                Text("Privacy & Data")
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .foregroundStyle(.secondary)
+
+                Text("BoboMind stores your clipboard history locally on your device only. No data is transmitted to any server. No analytics or tracking. You can delete all data at any time from Settings.")
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 320)
+            }
+            .padding(.top, 4)
 
             Spacer()
         }

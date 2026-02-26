@@ -61,6 +61,9 @@ struct ClipRowView: View {
         )
         .contentShape(Rectangle())
         .animation(.easeInOut(duration: 0.1), value: isSelected)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(item.title), \(item.contentType.displayName)\(item.isPinned ? ", pinned" : "")")
+        .accessibilityHint("Double tap to paste")
     }
 
     @ViewBuilder

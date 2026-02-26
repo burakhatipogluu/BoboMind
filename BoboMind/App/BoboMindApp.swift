@@ -142,10 +142,10 @@ struct MenuBarContentView: View {
 
         Menu("Clear...") {
             Button("Clear All (Keep Pinned)") {
-                appState.clearAll(keepPinned: true)
+                confirmClearAll(keepPinned: true)
             }
             Button("Clear Everything") {
-                appState.clearAll(keepPinned: false)
+                confirmClearAll(keepPinned: false)
             }
         }
 
@@ -160,5 +160,19 @@ struct MenuBarContentView: View {
             NSApplication.shared.terminate(nil)
         }
         .keyboardShortcut("q")
+    }
+
+    private func confirmClearAll(keepPinned: Bool) {
+        let alert = NSAlert()
+        alert.messageText = keepPinned ? "Clear All Clips?" : "Clear Everything?"
+        alert.informativeText = keepPinned
+            ? "This will delete all clips except pinned ones. This action cannot be undone."
+            : "This will delete all clips including pinned ones. This action cannot be undone."
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: keepPinned ? "Clear All" : "Clear Everything")
+        alert.addButton(withTitle: "Cancel")
+        if alert.runModal() == .alertFirstButtonReturn {
+            appState.clearAll(keepPinned: keepPinned)
+        }
     }
 }

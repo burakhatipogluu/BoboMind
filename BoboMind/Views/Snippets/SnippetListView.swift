@@ -22,6 +22,7 @@ struct SnippetListView: View {
                         .font(.system(size: 12, weight: .medium))
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Add snippet")
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
@@ -122,6 +123,9 @@ struct SnippetRowView: View {
                 .lineLimit(2)
         }
         .padding(.vertical, 4)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(snippet.title)\(!snippet.keyword.isEmpty ? ", keyword: \(snippet.keyword)" : ""). \(snippet.content)")
+        .accessibilityHint("Double tap to paste snippet")
     }
 }
 

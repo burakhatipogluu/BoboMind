@@ -14,7 +14,7 @@ struct EmptyStateView: View {
                     .font(.headline)
                     .foregroundStyle(.secondary)
 
-                Text("Try a different search term")
+                Text("Try a different search term or clear the filter")
                     .font(.caption)
                     .foregroundStyle(.tertiary)
             } else {
@@ -28,6 +28,10 @@ struct EmptyStateView: View {
                     .font(.system(.headline, design: .rounded))
                     .foregroundStyle(.secondary)
 
+                Text("Your smart clipboard history manager")
+                    .font(.subheadline)
+                    .foregroundStyle(.tertiary)
+
                 VStack(spacing: 6) {
                     instructionRow("1", "Copy anything from any app")
                     instructionRow("2", "Press ⌘⇧V to open BoboMind")
@@ -35,9 +39,17 @@ struct EmptyStateView: View {
                 }
                 .font(.caption)
                 .foregroundStyle(.tertiary)
+
+                Text("Your clipboard history is stored locally and never leaves your device.")
+                    .font(.caption2)
+                    .foregroundStyle(.quaternary)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 4)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(isSearching ? "No matching clips. Try a different search term." : "Welcome to BoboMind. Copy anything from any app, press Command Shift V to open, then select a clip to paste.")
     }
 
     private func instructionRow(_ number: String, _ text: String) -> some View {
