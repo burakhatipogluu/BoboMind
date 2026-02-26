@@ -167,17 +167,32 @@ struct PreviewPanelView: View {
         item.plainText = editText
         item.title = String(editText.components(separatedBy: .newlines).first?.prefix(200) ?? "")
 
-        // Update the string content in contents array
+        // Remove RTF/HTML content entries since we edited plain text only
         let textData = Data(editText.utf8)
+        let richTypes: Set<String> = [
+            NSPasteboard.PasteboardType.rtf.rawValue,
+            NSPasteboard.PasteboardType.rtfd.rawValue,
+            NSPasteboard.PasteboardType.html.rawValue,
+        ]
+        item.contents.removeAll { richTypes.contains($0.pasteboardType) }
+
+        // Update or create the string content
         if let stringContent = item.contents.first(where: {
             $0.pasteboardType == NSPasteboard.PasteboardType.string.rawValue
         }) {
             stringContent.data = textData
+        } else {
+            let content = ClipboardItemContent(
+                pasteboardType: NSPasteboard.PasteboardType.string.rawValue,
+                data: textData
+            )
+            item.contents.append(content)
         }
 
-        // Recompute contentHash to keep deduplication consistent
+        // Recompute contentHash from remaining contents only
         var hasher = SHA256()
-        for content in item.contents {
+        let sortedContents = item.contents.sorted { $0.pasteboardType < $1.pasteboardType }
+        for content in sortedContents {
             hasher.update(data: Data(content.pasteboardType.utf8))
             hasher.update(data: content.data)
         }

@@ -2,7 +2,7 @@ import AppKit
 import SwiftUI
 import SwiftData
 
-final class AppDelegate: NSObject, NSApplicationDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     private var settingsWindow: NSWindow?
     var modelContainer: ModelContainer?
     var hotkeyManager: HotkeyManager?
@@ -39,9 +39,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             window.contentView = NSHostingView(
                 rootView: settingsView.modelContainer(container)
             )
+            window.delegate = self
             window.makeKeyAndOrderFront(nil)
             NSApp.activate()
             settingsWindow = window
+        }
+    }
+
+    func windowWillClose(_ notification: Notification) {
+        if (notification.object as? NSWindow) === settingsWindow {
+            settingsWindow = nil
         }
     }
 }

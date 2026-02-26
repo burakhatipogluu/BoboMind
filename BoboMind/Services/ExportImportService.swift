@@ -19,6 +19,12 @@ struct ExportableClip: Codable {
     let sourceAppName: String?
     let groupName: String?
     let contentHash: String?
+    let binaryContents: [ExportableBinaryContent]?
+}
+
+struct ExportableBinaryContent: Codable {
+    let pasteboardType: String
+    let base64Data: String
 }
 
 struct ExportableSnippet: Codable {
@@ -27,7 +33,7 @@ struct ExportableSnippet: Codable {
     let keyword: String
 }
 
-struct ExportData: Codable {
+struct ExportData: Codable, Sendable {
     let version: Int
     let exportedAt: Date
     let clips: [ExportableClip]
@@ -39,7 +45,15 @@ enum ExportImportService {
 
     static func exportToJSON(clips: [ClipboardItem], snippets: [Snippet]) -> Data? {
         let exportClips = clips.map { item in
-            ExportableClip(
+            // Encode binary content (images, files) as base64
+            let binaryContents: [ExportableBinaryContent]? = item.plainText == nil ? item.contents.map { content in
+                ExportableBinaryContent(
+                    pasteboardType: content.pasteboardType,
+                    base64Data: content.data.base64EncodedString()
+                )
+            } : nil
+
+            return ExportableClip(
                 title: item.title,
                 plainText: item.plainText,
                 contentType: item.contentTypeRaw,
@@ -47,7 +61,8 @@ enum ExportImportService {
                 isPinned: item.isPinned,
                 sourceAppName: item.sourceAppName,
                 groupName: item.group?.name,
-                contentHash: item.contentHash
+                contentHash: item.contentHash,
+                binaryContents: binaryContents
             )
         }
 
@@ -80,6 +95,20 @@ enum ExportImportService {
     static func showExportPanel(clips: [ClipboardItem], snippets: [Snippet]) async -> ExportImportResult? {
         guard let data = exportToJSON(clips: clips, snippets: snippets) else {
             return ExportImportResult(success: false, clipsCount: 0, snippetsCount: 0, message: "Failed to encode data")
+        }
+
+        // Warn about binary content size
+        let binaryCount = clips.filter { $0.plainText == nil }.count
+        if binaryCount > 0 {
+            let alert = NSAlert()
+            alert.messageText = "Export includes binary data"
+            alert.informativeText = "\(binaryCount) image/file clip(s) will be exported with full binary data (base64 encoded). The export file may be large."
+            alert.alertStyle = .informational
+            alert.addButton(withTitle: "Continue")
+            alert.addButton(withTitle: "Cancel")
+            if alert.runModal() != .alertFirstButtonReturn {
+                return nil
+            }
         }
 
         let panel = NSSavePanel()
@@ -133,16 +162,14 @@ enum ExportImportService {
         guard response == .OK, let url = panel.url else { return nil }
 
         if let container = modelContainer {
-            return await Task.detached {
-                let bgContext = ModelContext(container)
-                return importFromJSON(url: url, modelContext: bgContext)
-            }.value
+            let bgContext = ModelContext(container)
+            return importFromJSON(url: url, modelContext: bgContext)
         } else {
             return importFromJSON(url: url, modelContext: modelContext)
         }
     }
 
-    static nonisolated func importFromJSON(url: URL, modelContext: ModelContext) -> ExportImportResult {
+    static func importFromJSON(url: URL, modelContext: ModelContext) -> ExportImportResult {
         guard let data = try? Data(contentsOf: url) else {
             return ExportImportResult(success: false, clipsCount: 0, snippetsCount: 0, message: "Could not read file")
         }
@@ -175,8 +202,40 @@ enum ExportImportService {
             importedSnippets += 1
         }
 
-        // Import text clips (skip duplicates by contentHash)
+        // Import clips (skip duplicates by contentHash)
         for exportClip in exportData.clips {
+            // Handle binary-only clips with base64 data
+            if exportClip.plainText == nil, let binaryContents = exportClip.binaryContents, !binaryContents.isEmpty {
+                let hash = exportClip.contentHash ?? UUID().uuidString
+                let descriptor = FetchDescriptor<ClipboardItem>(
+                    predicate: #Predicate { $0.contentHash == hash }
+                )
+                if (try? modelContext.fetchCount(descriptor)) ?? 0 > 0 { continue }
+
+                let item = ClipboardItem(
+                    contentHash: hash,
+                    title: exportClip.title,
+                    plainText: nil,
+                    contentType: ContentType(rawValue: exportClip.contentType) ?? .image,
+                    sourceAppName: exportClip.sourceAppName
+                )
+                item.createdAt = exportClip.createdAt
+                item.isPinned = exportClip.isPinned
+
+                for bc in binaryContents {
+                    if let data = Data(base64Encoded: bc.base64Data) {
+                        let content = ClipboardItemContent(
+                            pasteboardType: bc.pasteboardType,
+                            data: data
+                        )
+                        item.contents.append(content)
+                    }
+                }
+                modelContext.insert(item)
+                importedClips += 1
+                continue
+            }
+
             guard let text = exportClip.plainText else { continue }
 
             let textData = Data(text.utf8)

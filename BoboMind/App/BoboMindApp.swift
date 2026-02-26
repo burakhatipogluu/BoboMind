@@ -31,9 +31,26 @@ struct BoboMindApp: App {
             )
         } catch {
             logger.error("Could not create ModelContainer: \(error.localizedDescription)")
-            // Attempt recovery by deleting corrupted store
+            // Attempt recovery by backing up corrupted store
             let storeURL = config.url
-            try? FileManager.default.removeItem(at: storeURL)
+            let timestamp = ISO8601DateFormatter().string(from: Date()).replacingOccurrences(of: ":", with: "-")
+            let backupURL = storeURL.deletingPathExtension().appendingPathExtension("backup-\(timestamp).store")
+            try? FileManager.default.moveItem(at: storeURL, to: backupURL)
+            // Also move WAL/SHM if present
+            for ext in ["-wal", "-shm"] {
+                let src = URL(fileURLWithPath: storeURL.path + ext)
+                let dst = URL(fileURLWithPath: backupURL.path + ext)
+                try? FileManager.default.moveItem(at: src, to: dst)
+            }
+            // Show alert after launch
+            DispatchQueue.main.async {
+                let alert = NSAlert()
+                alert.messageText = "Database Recovery"
+                alert.informativeText = "The clipboard database was corrupted and has been backed up to:\n\(backupURL.lastPathComponent)\n\nA fresh database has been created."
+                alert.alertStyle = .warning
+                alert.addButton(withTitle: "OK")
+                alert.runModal()
+            }
             do {
                 return try ModelContainer(
                     for: schema,

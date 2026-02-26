@@ -6,6 +6,7 @@ struct GroupEditorView: View {
     @Environment(\.dismiss) private var dismiss
     @Query(sort: \ClipGroup.sortOrder, order: .reverse) private var existingGroups: [ClipGroup]
 
+    // TODO: Add drag-to-reorder support for group sort order
     @State private var name = ""
     @State private var selectedIcon = "folder.fill"
 

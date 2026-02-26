@@ -30,7 +30,7 @@ struct SnippetListView: View {
 
             if snippets.isEmpty {
                 VStack(spacing: 10) {
-                    Image(systemName: "text.snippet")
+                    Image(systemName: "doc.text")
                         .font(.system(size: 32, weight: .ultraLight))
                         .foregroundStyle(.quaternary)
                     Text("No snippets yet")
@@ -69,8 +69,12 @@ struct SnippetListView: View {
                 .scrollContentBackground(.hidden)
             }
         }
-        .sheet(isPresented: $showingEditor) {
-            SnippetEditorView(snippet: editingSnippet)
+        .onChange(of: showingEditor) { _, show in
+            if show {
+                SnippetEditorWindow.show(snippet: editingSnippet, modelContext: modelContext) {
+                    showingEditor = false
+                }
+            }
         }
     }
 
@@ -123,9 +127,9 @@ struct SnippetRowView: View {
 
 struct SnippetEditorView: View {
     @Environment(\.modelContext) private var modelContext
-    @Environment(\.dismiss) private var dismiss
 
     let snippet: Snippet?
+    var onDismiss: () -> Void = {}
 
     @State private var title = ""
     @State private var content = ""
@@ -158,7 +162,7 @@ struct SnippetEditorView: View {
             }
 
             HStack(spacing: 12) {
-                Button("Cancel") { dismiss() }
+                Button("Cancel") { onDismiss() }
                     .keyboardShortcut(.cancelAction)
 
                 Button(snippet == nil ? "Create" : "Save") {
@@ -193,6 +197,6 @@ struct SnippetEditorView: View {
         }
 
         do { try modelContext.save() } catch { logger.error("Failed to save snippet: \(error.localizedDescription)") }
-        dismiss()
+        onDismiss()
     }
 }

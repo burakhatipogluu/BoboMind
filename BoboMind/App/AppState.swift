@@ -27,6 +27,7 @@ final class AppState {
         let service = StorageService(modelContainer: modelContainer)
         self.storageService = service
         pasteService.clipboardMonitor = clipboardMonitor
+        clipboardMonitor.pasteService = pasteService
 
         clipboardMonitor.onNewClip = { [weak self] hash, title, plainText, contentType, contents, bundleID, appName in
             guard let self, let storage = self.storageService else { return }

@@ -69,7 +69,7 @@ struct ClipRowView: View {
             $0.pasteboardType == NSPasteboard.PasteboardType.png.rawValue ||
             $0.pasteboardType == NSPasteboard.PasteboardType.tiff.rawValue
         }),
-        let thumb = ThumbnailCache.shared.thumbnail(for: imageContent.data, id: item.id.uuidString) {
+        let thumb = ThumbnailCache.shared.thumbnailSync(for: imageContent.data, id: item.id.uuidString) {
             Image(nsImage: thumb)
                 .resizable()
                 .aspectRatio(contentMode: .fill)

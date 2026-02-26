@@ -11,9 +11,11 @@ struct SearchBarView: View {
         VStack(spacing: 0) {
             // Search field
             HStack(spacing: 8) {
-                Image(systemName: "magnifyingglass")
-                    .foregroundStyle(.secondary)
-                    .font(.system(size: 15, weight: .medium))
+                Image(nsImage: AppLogo.image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
 
                 TextField("Search clips…  /regex/", text: $text)
                     .textFieldStyle(.plain)
@@ -67,7 +69,7 @@ struct SearchBarView: View {
                 .padding(.bottom, 8)
             }
         }
-        .animation(.easeOut(duration: 0.15), value: text.isEmpty)
+        // Note: blanket .animation() removed to prevent spillover; clear button uses explicit withAnimation
     }
 }
 

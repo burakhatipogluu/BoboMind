@@ -9,6 +9,7 @@ final class HotkeyManager {
     private weak var appState: AppState?
     private var hotkeyRef: EventHotKeyRef?
     private var eventHandler: EventHandlerRef?
+    private var retainedSelf: Unmanaged<HotkeyManager>?
     
     /// The current shortcut stored as modifier flags + key code
     @Published var currentShortcut: HotkeyShortcut
@@ -22,7 +23,7 @@ final class HotkeyManager {
         self.appState = appState
         
         // Load saved shortcut or use default (Cmd+Shift+V)
-        if let data = UserDefaults.standard.data(forKey: "globalHotkey"),
+        if let data = UserDefaults.standard.data(forKey: Constants.UserDefaultsKeys.globalHotkey),
            let shortcut = try? JSONDecoder().decode(HotkeyShortcut.self, from: data) {
             self.currentShortcut = shortcut
         } else {
@@ -32,14 +33,20 @@ final class HotkeyManager {
         registerHotkey()
     }
     
+    deinit {
+        // Note: cleanup() must be called explicitly before deinit since it's @MainActor
+    }
+    
     func cleanup() {
         unregisterHotkey()
+        retainedSelf?.release()
+        retainedSelf = nil
     }
     
     func updateShortcut(_ shortcut: HotkeyShortcut) {
         currentShortcut = shortcut
         if let data = try? JSONEncoder().encode(shortcut) {
-            UserDefaults.standard.set(data, forKey: "globalHotkey")
+            UserDefaults.standard.set(data, forKey: Constants.UserDefaultsKeys.globalHotkey)
         }
         unregisterHotkey()
         registerHotkey()
@@ -66,7 +73,9 @@ final class HotkeyManager {
             return noErr
         }
         
-        let refcon = Unmanaged.passUnretained(self).toOpaque()
+        let retained = Unmanaged.passRetained(self)
+        retainedSelf = retained
+        let refcon = retained.toOpaque()
         InstallEventHandler(GetApplicationEventTarget(), handlerBlock, 1, &eventType, refcon, &eventHandler)
         
         RegisterEventHotKey(

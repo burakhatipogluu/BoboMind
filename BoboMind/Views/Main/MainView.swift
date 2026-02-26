@@ -9,10 +9,12 @@ struct MainView: View {
     @AppStorage(Constants.UserDefaultsKeys.showPreviewPanel) private var showPreview = true
     @State private var selectedItemID: PersistentIdentifier?
     @State private var cachedFilteredItems: [ClipboardItem] = []
+    // TODO: @Query may cause duplicate fetches when multiple views use the same query; consider shared data source
     @Query(sort: \ClipboardItem.lastUsedAt, order: .reverse)
     private var allItems: [ClipboardItem]
     @Query(sort: \ClipGroup.sortOrder)
     private var groups: [ClipGroup]
+    @State private var searchDebounceTask: Task<Void, Never>?
 
     var body: some View {
         @Bindable var state = appState
@@ -63,12 +65,17 @@ struct MainView: View {
                 selectedItemID = cachedFilteredItems.first?.persistentModelID
             }
         }
-        .onChange(of: allItems.count) {
+        .onChange(of: allItems.map(\.persistentModelID)) {
             recomputeFilteredItems()
         }
         .onChange(of: appState.searchText) {
-            recomputeFilteredItems()
-            selectedItemID = cachedFilteredItems.first?.persistentModelID
+            searchDebounceTask?.cancel()
+            searchDebounceTask = Task {
+                try? await Task.sleep(nanoseconds: 150_000_000)
+                guard !Task.isCancelled else { return }
+                recomputeFilteredItems()
+                selectedItemID = cachedFilteredItems.first?.persistentModelID
+            }
         }
         .onChange(of: appState.filterType) {
             recomputeFilteredItems()
@@ -259,11 +266,17 @@ struct MainView: View {
 
     private var selectedItem: ClipboardItem? {
         guard let id = selectedItemID else { return nil }
-        guard let item = modelContext.model(for: id) as? ClipboardItem,
-              !item.isDeleted else {
+        do {
+            guard let item = try? modelContext.model(for: id) as? ClipboardItem,
+                  !item.isDeleted else {
+                return nil
+            }
+            // Access a property to trigger fault; if model is gone this may throw
+            _ = item.title
+            return item
+        } catch {
             return nil
         }
-        return item
     }
 
     private func recomputeFilteredItems() {

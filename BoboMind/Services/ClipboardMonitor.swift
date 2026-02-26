@@ -12,6 +12,8 @@ final class ClipboardMonitor {
     private(set) var isMonitoring = false
     /// Set to true briefly while PasteService writes to pasteboard, so the monitor skips that change.
     var isPasting = false
+    /// Reference to PasteService for changeCount-based paste detection
+    weak var pasteService: PasteService?
 
     static let selfPasteType = NSPasteboard.PasteboardType(Constants.selfPasteUTI)
 
@@ -30,7 +32,7 @@ final class ClipboardMonitor {
         isMonitoring = true
         lastChangeCount = pasteboard.changeCount
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
-            MainActor.assumeIsolated {
+            Task { @MainActor in
                 self?.checkPasteboard()
             }
         }
@@ -42,12 +44,21 @@ final class ClipboardMonitor {
         isMonitoring = false
     }
 
+    /// Switch to faster polling while the panel is visible
+    func setFastPolling(_ fast: Bool) {
+        guard isMonitoring else { return }
+        stop()
+        start(interval: fast ? 0.3 : Constants.defaultPollingInterval)
+    }
+
     private func checkPasteboard() {
         let currentCount = pasteboard.changeCount
         guard currentCount != lastChangeCount else { return }
         lastChangeCount = currentCount
 
-        // Skip while PasteService is actively writing to pasteboard
+        // Skip if this change was from our own paste (changeCount-based detection)
+        if let ps = pasteService, ps.lastPasteChangeCount == currentCount { return }
+        // Legacy flag-based skip
         if isPasting { return }
 
         // Skip our own pastes
@@ -157,7 +168,8 @@ final class ClipboardMonitor {
 
     private func computeHash(_ contents: [(String, Data)]) -> String {
         var hasher = SHA256()
-        for (type, data) in contents {
+        let sorted = contents.sorted { $0.0 < $1.0 }
+        for (type, data) in sorted {
             hasher.update(data: Data(type.utf8))
             hasher.update(data: data)
         }

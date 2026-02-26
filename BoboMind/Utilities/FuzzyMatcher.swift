@@ -9,8 +9,8 @@ enum FuzzyMatcher {
     /// Returns nil if no match; otherwise returns a score.
     static func match(pattern: String, in target: String) -> Match? {
         let patternChars = Array(pattern.lowercased())
-        // Limit search to first 500 characters to avoid freeze on large clipboard items
-        let targetString = target.count > 500 ? String(target.prefix(500)) : target
+        // Limit search to first 2000 characters to avoid freeze on large clipboard items
+        let targetString = target.count > 2000 ? String(target.prefix(2000)) : target
         let targetChars = Array(targetString.lowercased())
 
         guard !patternChars.isEmpty, !targetChars.isEmpty else { return nil }
