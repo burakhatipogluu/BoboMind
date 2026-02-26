@@ -29,6 +29,7 @@ enum Constants {
         static let menuBarItemCount = "menuBarItemCount"
         static let panelSize = "panelSize"
         static let globalHotkey = "globalHotkey"
+        static let hasCompletedOnboarding = "hasCompletedOnboarding"
     }
 
     static let passwordManagerBundleIDs: Set<String> = [

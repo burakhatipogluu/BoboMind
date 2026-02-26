@@ -44,6 +44,7 @@
 		E1CEFC1C20EE23CDBCAE0621 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413176F8B6D535DE545DE08 /* ToastView.swift */; };
 		E641AEF5FA2C080E724984AD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4F81764388068CBB7DECDC /* SettingsView.swift */; };
 		E75533DAF08687ACD081BF07 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF913F2905DA802147ECBDB /* EmptyStateView.swift */; };
+		F1A2B3C4D5E6F7A8B9C0D1E2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E3 /* WelcomeView.swift */; };
 		EA7BA2663856BD01C8A77AE4 /* TimeAgoText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02AA57CF1012611E2D18675 /* TimeAgoText.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		AD346A6004E976F19471D006 /* ClipRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipRowView.swift; sourceTree = "<group>"; };
 		C833FEE14636EE1FF36057DC /* AppLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogo.swift; sourceTree = "<group>"; };
 		CDF913F2905DA802147ECBDB /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		F1A2B3C4D5E6F7A8B9C0D1E3 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		D27E3ABD440D9AAC51DEFF04 /* ClipTypeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipTypeIcon.swift; sourceTree = "<group>"; };
 		D3279C745ABC9ACC95373A51 /* SnippetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetListView.swift; sourceTree = "<group>"; };
 		D686DA6AE69F042DB48A8E60 /* NSImage+Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Thumbnail.swift"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				D27E3ABD440D9AAC51DEFF04 /* ClipTypeIcon.swift */,
 				CDF913F2905DA802147ECBDB /* EmptyStateView.swift */,
+				F1A2B3C4D5E6F7A8B9C0D1E3 /* WelcomeView.swift */,
 				E02AA57CF1012611E2D18675 /* TimeAgoText.swift */,
 				1413176F8B6D535DE545DE08 /* ToastView.swift */,
 			);
@@ -343,6 +346,7 @@
 				6E94B60EEF4FBF7BB662BB72 /* Constants.swift in Sources */,
 				87A687FA030948ACE503A6F9 /* ContentType.swift in Sources */,
 				E75533DAF08687ACD081BF07 /* EmptyStateView.swift in Sources */,
+				F1A2B3C4D5E6F7A8B9C0D1E2 /* WelcomeView.swift in Sources */,
 				6EA40F5BA3606A223C67DCE6 /* ExportImportService.swift in Sources */,
 				9A32AB0C06157A18DAE7EEA3 /* FloatingPanel.swift in Sources */,
 				355BBC70994C88D317A63C22 /* FuzzyMatcher.swift in Sources */,

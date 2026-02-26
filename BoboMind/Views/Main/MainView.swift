@@ -7,6 +7,7 @@ struct MainView: View {
     @FocusState private var isSearchFocused: Bool
 
     @AppStorage(Constants.UserDefaultsKeys.showPreviewPanel) private var showPreview = true
+    @AppStorage(Constants.UserDefaultsKeys.hasCompletedOnboarding) private var hasCompletedOnboarding = false
     @State private var selectedItemID: PersistentIdentifier?
     @State private var cachedFilteredItems: [ClipboardItem] = []
     // TODO: @Query may cause duplicate fetches when multiple views use the same query; consider shared data source
@@ -17,9 +18,17 @@ struct MainView: View {
     @State private var searchDebounceTask: Task<Void, Never>?
 
     var body: some View {
+        if !hasCompletedOnboarding {
+            WelcomeView(hasCompletedOnboarding: $hasCompletedOnboarding)
+        } else {
+            mainContentView
+        }
+    }
+
+    private var mainContentView: some View {
         @Bindable var state = appState
 
-        VStack(spacing: 0) {
+        return VStack(spacing: 0) {
             // Search bar
             SearchBarView(
                 text: $state.searchText,
