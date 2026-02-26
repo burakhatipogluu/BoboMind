@@ -136,10 +136,11 @@ final class AppState {
         let mainView = MainView()
             .environment(self)
             .modelContainer(modelContainer)
-            .frame(width: panelSize.width, height: panelSize.height)
 
         let hostingView = NSHostingView(rootView: mainView)
-        hostingView.layer?.backgroundColor = .clear
+        hostingView.translatesAutoresizingMaskIntoConstraints = true
+        hostingView.autoresizingMask = [.width, .height]
+
         let newPanel = FloatingPanel(contentView: hostingView, width: panelSize.width, height: panelSize.height, position: position)
         newPanel.onClose = { [weak self] in
             self?.panel = nil

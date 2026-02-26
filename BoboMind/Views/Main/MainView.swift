@@ -54,7 +54,8 @@ struct MainView: View {
 
             statusBar
         }
-        .background(.clear)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background(.ultraThinMaterial)
         .onAppear {
             isSearchFocused = true
             recomputeFilteredItems()
