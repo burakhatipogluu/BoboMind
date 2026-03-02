@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,10 +31,10 @@
 		A1C0628299310A0D099E14BE /* SchemaVersioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D2BEDAAD206753B7D4712 /* SchemaVersioning.swift */; };
 		A2C87C56EE41E7C389D680F1 /* ClipRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD346A6004E976F19471D006 /* ClipRowView.swift */; };
 		A9DF05FF0418335B8E3EDF77 /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB46CC811C7016E253D7608 /* HotkeyManager.swift */; };
+		AABB112233445567 /* PanelSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB112233445566 /* PanelSize.swift */; };
 		AFEBC6F7A4DE185CA70A71C5 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD46EF4C001B5EC90B59AC /* AppState.swift */; };
 		B9EEE5E67FF2FED1536F7E55 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21654F4EEAFAFCCECBE0FBC0 /* Snippet.swift */; };
 		C42A0C07298D2547AAF30F0E /* PopupPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B92F7E85CB9B4E1D85B9407 /* PopupPosition.swift */; };
-		AABB112233445567 /* PanelSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB112233445566 /* PanelSize.swift */; };
 		C636ECB7EDBA6983EBADEF5F /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A9693AB8C019BB3BFA751E /* StorageService.swift */; };
 		CE9D8000069F3644F6B8ECE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E15CA6441C48F7D0426EE0 /* Assets.xcassets */; };
 		CEE4428F0FD470FA4C43E8AD /* ClipTypeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E3ABD440D9AAC51DEFF04 /* ClipTypeIcon.swift */; };
@@ -44,8 +44,8 @@
 		E1CEFC1C20EE23CDBCAE0621 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1413176F8B6D535DE545DE08 /* ToastView.swift */; };
 		E641AEF5FA2C080E724984AD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4F81764388068CBB7DECDC /* SettingsView.swift */; };
 		E75533DAF08687ACD081BF07 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF913F2905DA802147ECBDB /* EmptyStateView.swift */; };
-		F1A2B3C4D5E6F7A8B9C0D1E2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E3 /* WelcomeView.swift */; };
 		EA7BA2663856BD01C8A77AE4 /* TimeAgoText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02AA57CF1012611E2D18675 /* TimeAgoText.swift */; };
+		F1A2B3C4D5E6F7A8B9C0D1E2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F7A8B9C0D1E3 /* WelcomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +57,6 @@
 		0DC3EED7FE96F35B149DD314 /* PasteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteService.swift; sourceTree = "<group>"; };
 		1413176F8B6D535DE545DE08 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		1B92F7E85CB9B4E1D85B9407 /* PopupPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupPosition.swift; sourceTree = "<group>"; };
-		AABB112233445566 /* PanelSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelSize.swift; sourceTree = "<group>"; };
 		21654F4EEAFAFCCECBE0FBC0 /* Snippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
 		258D7A5B4AC45A109EC0BDF8 /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		28599DBE2DCCDE988B3D9DCF /* ClipGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipGroup.swift; sourceTree = "<group>"; };
@@ -70,7 +69,7 @@
 		5321DF3A6147DF0971B937FF /* BoboMindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoboMindApp.swift; sourceTree = "<group>"; };
 		54788BD199F954AA41827916 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5EBB259A6F345391D731B658 /* BoboMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoboMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		685BF9E1A76F3DFE6BA8D92A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		685BF9E1A76F3DFE6BA8D92A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		6D4F81764388068CBB7DECDC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		779EEB3F9D77C52555297D41 /* ThumbnailCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailCache.swift; sourceTree = "<group>"; };
 		8BB46CC811C7016E253D7608 /* HotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyManager.swift; sourceTree = "<group>"; };
@@ -79,16 +78,17 @@
 		A0CD46EF4C001B5EC90B59AC /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		A22713585E223E701A6FF3BF /* SnippetEditorWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetEditorWindow.swift; sourceTree = "<group>"; };
 		A76DB0B4EF65FC7B36BC5B0F /* GroupEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditorView.swift; sourceTree = "<group>"; };
+		AABB112233445566 /* PanelSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelSize.swift; sourceTree = "<group>"; };
 		AD346A6004E976F19471D006 /* ClipRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipRowView.swift; sourceTree = "<group>"; };
 		C833FEE14636EE1FF36057DC /* AppLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogo.swift; sourceTree = "<group>"; };
 		CDF913F2905DA802147ECBDB /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
-		F1A2B3C4D5E6F7A8B9C0D1E3 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		D27E3ABD440D9AAC51DEFF04 /* ClipTypeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipTypeIcon.swift; sourceTree = "<group>"; };
 		D3279C745ABC9ACC95373A51 /* SnippetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetListView.swift; sourceTree = "<group>"; };
 		D686DA6AE69F042DB48A8E60 /* NSImage+Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Thumbnail.swift"; sourceTree = "<group>"; };
 		E02AA57CF1012611E2D18675 /* TimeAgoText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAgoText.swift; sourceTree = "<group>"; };
 		E11523A18025CEEC27530B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E23D2BEDAAD206753B7D4712 /* SchemaVersioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaVersioning.swift; sourceTree = "<group>"; };
+		F1A2B3C4D5E6F7A8B9C0D1E3 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		F8A9693AB8C019BB3BFA751E /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -290,11 +290,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1500;
-				TargetAttributes = {
-					98B386410F1F5D29ED04935B = {
-						ProvisioningStyle = Automatic;
-					};
-				};
 			};
 			buildConfigurationList = 432EE945F8B1E4B80D5C1596 /* Build configuration list for PBXProject "BoboMind" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -306,7 +301,6 @@
 			);
 			mainGroup = 3F8FA9602CB37FA927E7BF26;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -436,9 +430,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BoboMind/BoboMind.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 4JQX8VY8VV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
@@ -450,9 +447,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bobomind.app;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.10;
 			};
@@ -526,9 +524,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BoboMind/BoboMind.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 4JQX8VY8VV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "";
@@ -540,9 +541,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bobomind.app;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.10;
 			};

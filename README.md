@@ -20,10 +20,17 @@
 
 Press `⌘ ⇧ V` and a beautiful floating panel appears — search your history, pick a clip, and it's pasted instantly.
 
-<!-- 
-SCREENSHOTS: Add your screenshots here
-<img src="screenshots/main-panel.png" width="700" alt="BoboMind Main Panel" />
--->
+### Clipboard History
+![Clipboard History](https://github.com/burakhatipogluu/BoboMind/releases/download/v1.0.0/01-clipboard-history.png)
+
+### Snippets
+![Snippets](https://github.com/burakhatipogluu/BoboMind/releases/download/v1.0.0/02-snippets.png)
+
+### Menu Bar
+![Menu Bar](https://github.com/burakhatipogluu/BoboMind/releases/download/v1.0.0/03-menubar.png)
+
+### Settings
+![Settings](https://github.com/burakhatipogluu/BoboMind/releases/download/v1.0.0/04-settings.png)
 
 </div>
 
