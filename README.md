@@ -168,6 +168,14 @@ BoboMind/
 
 ## 🚀 Getting Started
 
+
+### Install via Homebrew
+
+```bash
+brew tap burakhatipogluu/tap
+brew install --cask bobomind
+```
+
 ### Requirements
 
 - **macOS Sonoma 14** or later
