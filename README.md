@@ -175,6 +175,11 @@ BoboMind/
 
 ## 🚀 Getting Started
 
+### App Store
+
+[![Download on the Mac App Store](https://developer.apple.com/assets/elements/badges/download-on-the-mac-app-store.svg)](https://apps.apple.com/app/bobomind/id6759796401)
+
+
 
 ### Install via Homebrew
 
